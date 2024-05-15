@@ -1,0 +1,49 @@
+--//OBS: Código em .lua, feito somente para passar o tempo.\\
+
+local starter_money = 100
+local teste = { -- {"Item", valor}
+  {"Coca", 10};
+  {"Guarana", 20};
+};
+local inventory = {}
+local product_status = false
+
+function ver_itens(t)
+    print("Produtos disponiveis:")
+    for i, v in ipairs(t) do
+        print(i.."º Item: "..v[1])
+    end
+end
+
+print("Para começar, digite seu nome:")
+local player_name = io.read()
+
+print("ㅤ")
+print("Seu dinheiro: "..starter_money)
+print("ㅤ")
+print("Atendente: Olá, "..player_name..". Boa tarde, seja bem-vindo.")
+print("Você deseja olhar nossos produtos? sim ou nao")
+local see_market = io.read()
+
+if see_market == "sim" then
+    print("ㅤ")
+    print(ver_itens(teste))
+end
+
+print("-- OBS: Para obter um produto, digite o nome do produto.")
+local search_product = io.read()
+
+for i, v in ipairs(teste) do
+    if v[1] == search_product then
+            product_status = true
+            starter_money = starter_money - v[2]
+            table.insert(inventory, search_product)
+            print("Você comprou 1x "..search_product.." por "..v[2])
+        break
+    else
+        print("Não há nenhum produto com este nome!")
+        break
+    end
+end
+print("ㅤ")
+print("Seu dinheiro: "..starter_money)
